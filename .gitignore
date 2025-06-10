@@ -1,0 +1,16 @@
+# Build artifacts
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio auto files
+.vs/
+
+# NuGet packages
+*.nupkg
+packages/
