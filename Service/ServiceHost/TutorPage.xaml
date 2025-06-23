@@ -1,0 +1,48 @@
+﻿<Page x:Class="ServiceHost.TutorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Manage Tutors">
+    <StackPanel Margin="10" Background="WhiteSmoke">
+        <TextBlock Text="Manage Tutors" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+
+        <!-- Formulario de registro de tutor -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Content="Tutor ID:"                VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtTutorId"             Width="100" Margin="5,0"/>
+            <Label Content="First Name:"              VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtFirstName"           Width="100" Margin="5,0"/>
+            <Label Content="Paternal Surname:"       VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtPaternalSurname"     Width="100" Margin="5,0"/>
+            <Label Content="Maternal Surname:"       VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtMaternalSurname"     Width="100" Margin="5,0"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
+            <Label Content="Phone:"                   VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtPhone"               Width="120" Margin="5,0"/>
+            <Label Content="Email:"                   VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtEmail"               Width="180" Margin="5,0"/>
+            <Label Content="Password:"                VerticalAlignment="Center"/>
+            <PasswordBox x:Name="TxtPassword"         Width="120" Margin="5,0"/>
+            <Button Content="Register Tutor"          Click="RegisterTutor_Click" Margin="10,0"/>
+            <Button Content="Refresh Tutors"          Click="RefreshTutors_Click" Margin="10,0"/>
+        </StackPanel>
+
+        <!-- Tabla de tutores -->
+        <DataGrid x:Name="TutorsGrid"
+              AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              Height="300"
+              IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"              Binding="{Binding TutorId}"          Width="Auto"/>
+                <DataGridTextColumn Header="First Name"      Binding="{Binding FirstName}"        Width="*"/>
+                <DataGridTextColumn Header="Paternal Surname" Binding="{Binding PaternalSurname}" Width="*"/>
+                <DataGridTextColumn Header="Maternal Surname" Binding="{Binding MaternalSurname}" Width="*"/>
+                <DataGridTextColumn Header="Phone"           Binding="{Binding Phone}"            Width="*"/>
+                <DataGridTextColumn Header="Email"           Binding="{Binding Email}"            Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Page>
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="955b41592ad344f4912f86ba168fa87f" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="TurnosTutoriasModel.Carreras" Width="1.5" PointX="1.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="TurnosTutoriasModel.EvaluacionFinal" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TurnosTutoriasModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TurnosTutoriasModel.TurnoAbandonos" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TurnosTutoriasModel.TurnoCancelaciones" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TurnosTutoriasModel.TurnoEstados" Width="1.5" PointX="3.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TurnosTutoriasModel.Turnos" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TurnosTutoriasModel.Tutores" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TurnosTutoriasModel.Tutorias" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TurnosTutoriasModel.Usuarios" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="TurnosTutoriasModel.FK_Usuarios_Carreras" ManuallyRouted="false" />
+        <AssociationConnector Association="TurnosTutoriasModel.FK_Eval_Estudiante" ManuallyRouted="false" />
+        <AssociationConnector Association="TurnosTutoriasModel.FK_Eval_Tutor" ManuallyRouted="false" />
+        <AssociationConnector Association="TurnosTutoriasModel.FK_Eval_Tutoria" ManuallyRouted="false" />
+        <AssociationConnector Association="TurnosTutoriasModel.FK_Abandono_Turnos" ManuallyRouted="false" />
+        <AssociationConnector Association="TurnosTutoriasModel.FK_Cancel_Turnos" ManuallyRouted="false" />
+        <AssociationConnector Association="TurnosTutoriasModel.FK_Turnos_Estado" ManuallyRouted="false" />
+        <AssociationConnector Association="TurnosTutoriasModel.FK_Turnos_Estudiante" ManuallyRouted="false" />
+        <AssociationConnector Association="TurnosTutoriasModel.FK_Turnos_Tutor" ManuallyRouted="false" />
+        <AssociationConnector Association="TurnosTutoriasModel.FK_Turnos_Tutoria" ManuallyRouted="false" />
+        <AssociationConnector Association="TurnosTutoriasModel.FK_Usuarios_Tutores" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
