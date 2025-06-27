@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,369 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllStudentsLabel" xml:space="preserve">
+    <value>Todos los estudiantes</value>
+  </data>
+  <data name="CancelShiftLabel" xml:space="preserve">
+    <value>Cancelar turno</value>
+  </data>
+  <data name="CareerPlaceholder" xml:space="preserve">
+    <value>Carrera</value>
+  </data>
+  <data name="DuplicateTutorFault_Message" xml:space="preserve">
+    <value>Ya existe un tutor con ese número de personal.</value>
+  </data>
+  <data name="DuplicateTutorFault_Reason" xml:space="preserve">
+    <value>Tutor duplicado.</value>
+  </data>
+  <data name="EmailPlaceholder" xml:space="preserve">
+    <value>Correo electrónico</value>
+  </data>
+  <data name="EnglishLabel" xml:space="preserve">
+    <value>Ingles</value>
+  </data>
+  <data name="ErrorCancellingShift" xml:space="preserve">
+    <value>Error cancelando turno: {0}</value>
+  </data>
+  <data name="ErrorLoadingCareers" xml:space="preserve">
+    <value>Error cargando carreras:</value>
+  </data>
+  <data name="ErrorLoadingCareers1" xml:space="preserve">
+    <value>Error cargando carreras:</value>
+  </data>
+  <data name="ErrorLoadingTutors" xml:space="preserve">
+    <value>Error cargando tutores:</value>
+  </data>
+  <data name="ErrorLoadingTutors1" xml:space="preserve">
+    <value>Error cargando tutores:</value>
+  </data>
+  <data name="ErrorMarkingAttended" xml:space="preserve">
+    <value>Error marcando como asistido: {0}</value>
+  </data>
+  <data name="ErrorMarkingNoShow" xml:space="preserve">
+    <value>Error marcando como ausente: {0}</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorTitle1" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorTitle2" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Field_CbCareers" xml:space="preserve">
+    <value>Carrera</value>
+  </data>
+  <data name="Field_CbTutors" xml:space="preserve">
+    <value>Tutor</value>
+  </data>
+  <data name="Field_TxtEmail" xml:space="preserve">
+    <value>Correo electrónico</value>
+  </data>
+  <data name="Field_TxtEmail1" xml:space="preserve">
+    <value>Correo electrónico</value>
+  </data>
+  <data name="Field_TxtFirstName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Field_TxtFirstName1" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Field_TxtMaternalSurname" xml:space="preserve">
+    <value>Apellido materno</value>
+  </data>
+  <data name="Field_TxtMaternalSurname1" xml:space="preserve">
+    <value>Apellido materno</value>
+  </data>
+  <data name="Field_TxtPassword" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="Field_TxtPassword1" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="Field_TxtPaternalSurname" xml:space="preserve">
+    <value>Apellido paterno</value>
+  </data>
+  <data name="Field_TxtPaternalSurname1" xml:space="preserve">
+    <value>Apellido paterno</value>
+  </data>
+  <data name="Field_TxtPhone" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="Field_TxtStudentId" xml:space="preserve">
+    <value>Matrícula</value>
+  </data>
+  <data name="Field_TxtTutorId" xml:space="preserve">
+    <value>ID personal</value>
+  </data>
+  <data name="FirstNamePlaceholder" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="FromLabel" xml:space="preserve">
+    <value>Desde:</value>
+  </data>
+  <data name="FromLabel1" xml:space="preserve">
+    <value>Desde:</value>
+  </data>
+  <data name="GenerateButtonLabel" xml:space="preserve">
+    <value>Generar</value>
+  </data>
+  <data name="GenerateButtonLabel1" xml:space="preserve">
+    <value>Generar</value>
+  </data>
+  <data name="HeaderAppointmentId" xml:space="preserve">
+    <value>TurnoId</value>
+  </data>
+  <data name="HeaderCareer" xml:space="preserve">
+    <value>Carrera</value>
+  </data>
+  <data name="HeaderDate" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="HeaderDate1" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="HeaderDate2" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="HeaderEmail" xml:space="preserve">
+    <value>Correo</value>
+  </data>
+  <data name="HeaderEmail1" xml:space="preserve">
+    <value>Correo electrónico</value>
+  </data>
+  <data name="HeaderFirstName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="HeaderID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="HeaderMaternalSurname" xml:space="preserve">
+    <value>Apellido materno</value>
+  </data>
+  <data name="HeaderMatricula" xml:space="preserve">
+    <value>Matrícula</value>
+  </data>
+  <data name="HeaderMatricula1" xml:space="preserve">
+    <value>Matrícula</value>
+  </data>
+  <data name="HeaderName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="HeaderPaternalSurname" xml:space="preserve">
+    <value>Apellido paterno</value>
+  </data>
+  <data name="HeaderPhone" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="HeaderShiftId" xml:space="preserve">
+    <value>Turno</value>
+  </data>
+  <data name="HeaderShiftId1" xml:space="preserve">
+    <value>Turno</value>
+  </data>
+  <data name="HeaderStatus" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="HeaderStudent" xml:space="preserve">
+    <value>Estudiante</value>
+  </data>
+  <data name="HeaderStudent1" xml:space="preserve">
+    <value>Estudiante</value>
+  </data>
+  <data name="HeaderStudent2" xml:space="preserve">
+    <value>Estudiante</value>
+  </data>
+  <data name="HeaderTutor" xml:space="preserve">
+    <value>Tutor</value>
+  </data>
+  <data name="HeaderTutor1" xml:space="preserve">
+    <value>Tutor</value>
+  </data>
+  <data name="HeaderTutor2" xml:space="preserve">
+    <value>Tutor</value>
+  </data>
+  <data name="HeaderTutorId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="IdiomaLabel" xml:space="preserve">
+    <value>Idioma:</value>
+  </data>
+  <data name="InfoTitle" xml:space="preserve">
+    <value>Información</value>
+  </data>
+  <data name="ManageStudentsLabel" xml:space="preserve">
+    <value>Administrar estudiantes</value>
+  </data>
+  <data name="ManageTutorsLabel" xml:space="preserve">
+    <value>Administrar tutores</value>
+  </data>
+  <data name="MarkAttendedLabel" xml:space="preserve">
+    <value>Marcar asistido</value>
+  </data>
+  <data name="MarkNoShowLabel" xml:space="preserve">
+    <value>Marcar ausente</value>
+  </data>
+  <data name="MaternalSurnamePlaceholder" xml:space="preserve">
+    <value>Apellido materno</value>
+  </data>
+  <data name="MatriculaPlaceholder" xml:space="preserve">
+    <value>Matrícula</value>
+  </data>
+  <data name="Matricula_InvalidFormat" xml:space="preserve">
+    <value>La matrícula debe tener 2 letras y 8 dígitos.</value>
+  </data>
+  <data name="Matricula_Required" xml:space="preserve">
+    <value>Debe especificar una matrícula.</value>
+  </data>
+  <data name="MustSelectCareer" xml:space="preserve">
+    <value>Debe seleccionar una carrera.</value>
+  </data>
+  <data name="MustSelectTutorCareer" xml:space="preserve">
+    <value>Debe seleccionar un tutor y una carrera para el estudiante.</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="NoAppointmentsFound" xml:space="preserve">
+    <value>No hay turnos atendidos.</value>
+  </data>
+  <data name="NotifyErrorMessageFormat" xml:space="preserve">
+    <value>Ocurrió un error al procesar la notificación: {0}</value>
+  </data>
+  <data name="NotifyErrorTitle" xml:space="preserve">
+    <value>Error en notificación</value>
+  </data>
+  <data name="NotifyUpcomingMessageFormat" xml:space="preserve">
+    <value>Tu turno #{0} empieza pronto: {1}</value>
+  </data>
+  <data name="NotifyUpcomingTitle" xml:space="preserve">
+    <value>Recordatorio de turno</value>
+  </data>
+  <data name="OKButtonText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="PasswordPlaceholder" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="Password_InvalidFormat" xml:space="preserve">
+    <value>La contraseña debe tener 8–20 caracteres, una mayúscula y un símbolo.</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>Debe especificar una contraseña.</value>
+  </data>
+  <data name="PaternalSurnamePlaceholder" xml:space="preserve">
+    <value>Apellido paterno</value>
+  </data>
+  <data name="PdfGenerationError" xml:space="preserve">
+    <value>Error al generar PDF: {0}</value>
+  </data>
+  <data name="PleaseSelectBothDates" xml:space="preserve">
+    <value>Seleccione fecha de inicio y fin.</value>
+  </data>
+  <data name="PrintButtonLabel" xml:space="preserve">
+    <value>Imprimir</value>
+  </data>
+  <data name="QueueTabHeader" xml:space="preserve">
+    <value>Cola</value>
+  </data>
+  <data name="ReasonPlaceholder" xml:space="preserve">
+    <value>Motivo</value>
+  </data>
+  <data name="ReasonRequired" xml:space="preserve">
+    <value>Debe especificar una razón.</value>
+  </data>
+  <data name="RefreshQueueLabel" xml:space="preserve">
+    <value>Actualizar cola</value>
+  </data>
+  <data name="RegisterStudentButtonLabel" xml:space="preserve">
+    <value>Registrar estudiante</value>
+  </data>
+  <data name="RegisterStudentLabel" xml:space="preserve">
+    <value>Registrar estudiante</value>
+  </data>
+  <data name="RegisterTabHeader" xml:space="preserve">
+    <value>Registrar estudiantes</value>
+  </data>
+  <data name="RegisterTutorButtonLabel" xml:space="preserve">
+    <value>Registrar tutor</value>
+  </data>
+  <data name="ReportsHeader" xml:space="preserve">
+    <value>Informe de turnos atendidos</value>
+  </data>
+  <data name="ReportsHeader1" xml:space="preserve">
+    <value>Informe de turnos atendidos</value>
+  </data>
+  <data name="ReportsLabel" xml:space="preserve">
+    <value>Informes</value>
+  </data>
+  <data name="ShiftCancelled" xml:space="preserve">
+    <value>Turno cancelado.</value>
+  </data>
+  <data name="ShiftMarkedAttended" xml:space="preserve">
+    <value>Turno marcado como asistido.</value>
+  </data>
+  <data name="ShiftMarkedNoShow" xml:space="preserve">
+    <value>Turno marcado como ausente.</value>
+  </data>
+  <data name="SpanishLabel" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="StartDateBeforeEndError" xml:space="preserve">
+    <value>La fecha de inicio debe ser anterior a la de fin.</value>
+  </data>
+  <data name="StopServerLabel" xml:space="preserve">
+    <value>Detener servidor</value>
+  </data>
+  <data name="StudentRegisteredSuccessfully" xml:space="preserve">
+    <value>Estudiante registrado con éxito.</value>
+  </data>
+  <data name="ToLabel" xml:space="preserve">
+    <value>Hasta:</value>
+  </data>
+  <data name="ToLabel1" xml:space="preserve">
+    <value>Hasta:</value>
+  </data>
+  <data name="TutorId_InvalidFormat" xml:space="preserve">
+    <value>El ID de tutor debe iniciar con 'T' mayúscula seguido de 3 dígitos.</value>
+  </data>
+  <data name="TutorId_Required" xml:space="preserve">
+    <value>Debe especificar un ID de tutor.</value>
+  </data>
+  <data name="TutorPageHeader" xml:space="preserve">
+    <value>Administrar tutores</value>
+  </data>
+  <data name="TutorPlaceholder" xml:space="preserve">
+    <value>Tutor</value>
+  </data>
+  <data name="TutorRegisteredSuccessfully" xml:space="preserve">
+    <value>Tutor registrado con éxito.</value>
+  </data>
+  <data name="UnexpectedErrorMessage" xml:space="preserve">
+    <value>Error inesperado: {0}</value>
+  </data>
+  <data name="UnexpectedErrorMessage1" xml:space="preserve">
+    <value>Error inesperado: {0}</value>
+  </data>
+  <data name="UpcomingAppointmentMessage" xml:space="preserve">
+    <value>Tu turno #{0} empieza pronto: {1}</value>
+  </data>
+  <data name="UpcomingAppointmentTitle" xml:space="preserve">
+    <value>Recordatorio de turno</value>
+  </data>
+  <data name="ValidationErrorTitle" xml:space="preserve">
+    <value>Error de validación</value>
+  </data>
+  <data name="ValidationErrorTitle1" xml:space="preserve">
+    <value>Error de validación</value>
+  </data>
+  <data name="Validators.Password_Required" xml:space="preserve">
+    <value>Contraseña requerida.</value>
+  </data>
 </root>

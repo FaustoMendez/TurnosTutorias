@@ -1,0 +1,118 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Colores base -->
+    <Color x:Key="PrimaryColor">#263A29</Color>
+    <!-- verde muy oscuro -->
+    <Color x:Key="PrimaryLightColor">#2D4A30</Color>
+    <Color x:Key="BackgroundGradientTop">#486341</Color>
+    <Color x:Key="BackgroundGradientBottom">#324C2A</Color>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
+
+    <!-- Brushes -->
+    <LinearGradientBrush x:Key="BackgroundBrush"
+                         StartPoint="0 0" EndPoint="0 1">
+        <GradientStop Color="{StaticResource BackgroundGradientTop}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundGradientBottom}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="PrimaryLightBrush"
+                 Color="{StaticResource PrimaryLightColor}" />
+    <SolidColorBrush x:Key="ForegroundLightBrush" Color="#EEEEEE"/>
+
+    <!-- Card “cristal” -->
+    <SolidColorBrush x:Key="GlassBrush" Color="#66FFFFFF"/>
+
+    <DropShadowEffect x:Key="CardShadow"
+                      BlurRadius="18" ShadowDepth="0" Opacity="0.35"/>
+
+    <!-- TextBoxes transparentes -->
+    <Style x:Key="GlassTextBox" TargetType="TextBox">
+        <Setter Property="Background" Value="#33FFFFFF"/>
+        <Setter Property="BorderBrush" Value="#55FFFFFF"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                        <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- GlassPasswordBox -->
+    <Style x:Key="GlassPasswordBox" TargetType="PasswordBox">
+        <Setter Property="Background" Value="#33FFFFFF"/>
+        <Setter Property="BorderBrush" Value="#55FFFFFF"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="PasswordBox">
+                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="4">
+                        <ScrollViewer x:Name="PART_ContentHost"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Botón principal -->
+    <Style x:Key="PrimaryButton" TargetType="Button">
+        <!-- Propiedades básicas -->
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Cursor" Value="Hand" />
+
+        <!-- Plantilla -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="4">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                    </Border>
+
+                    <!-- Triggers -->
+                    <ControlTemplate.Triggers>
+                        <!-- Hover -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border"
+                                Property="Background"
+                                Value="{StaticResource PrimaryLightBrush}" />
+                        </Trigger>
+
+                        <!-- Deshabilitado -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border"
+                                Property="Opacity"
+                                Value="0.40" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

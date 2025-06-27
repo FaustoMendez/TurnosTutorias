@@ -6,50 +6,60 @@ using ServiceContracts.DTOs;
 using ServiceImplementacion.Business;
 using Data;
 using ServiceContracts.DTOs.ServiceContracts.DTOs;
+using System.Diagnostics;
 
-namespace ServiceImplementacion.Services
+namespace ServiceImplementacion
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class TutoringFacadeService : IUserService, ITutoringService
     {
-        private readonly UserManager _userManager;
-        private readonly AppointmentManager _appointmentManager;
-        private readonly NotificationManager _notificationManager;
+        private readonly UserManager userManager;
+        private readonly AppointmentManager appointmentManager;
+        private readonly NotificationManager notificationManager;
 
 
         public TutoringFacadeService()
         {
             var ctx = new TurnosTutoriasEntities();
-            _userManager = new UserManager(ctx);
-            _appointmentManager = new AppointmentManager(ctx);
+            userManager = new UserManager(ctx);
+            appointmentManager = new AppointmentManager(ctx);
         }
 
-        public void RegisterTutor(RegisterTutorRequest request) => _userManager.RegisterTutor(request);
+        [DebuggerNonUserCode]
+        public void RegisterTutor(RegisterTutorRequest request) => userManager.RegisterTutor(request);
 
-        public void RegisterStudent(RegisterStudentRequest request) => _userManager.RegisterStudent(request);
+        [DebuggerNonUserCode]
+        public void RegisterStudent(RegisterStudentRequest request) => userManager.RegisterStudent(request);
 
-        public List<UserDto> GetAllUsers() => _userManager.GetAllUsers();
+        public List<UserDto> GetAllUsers() => userManager.GetAllUsers();
 
-        public AuthenticatedUserDto LoginUser(LoginRequest request) => _userManager.LoginUser(request);
+        public AuthenticatedUserDto LoginUser(LoginRequest request) => userManager.LoginUser(request);
 
-        public int CreateAppointment(CreateAppointmentRequest request) => _appointmentManager.CreateAppointment(request.StudentId, request.TutorId, request.SessionId).TurnoId;
+        public List<CareerDto> GetAllCareers() => userManager.GetAllCareers();
 
-        public List<AppointmentDto> GetPendingAppointments() => _appointmentManager.GetPendingAppointments();
+        public int CreateAppointment(CreateAppointmentRequest request) => appointmentManager.CreateAppointment(request.StudentId, request.TutorId, request.SessionId).TurnoId;
 
-        public void CancelAppointment(int appointmentId, string reason) => _appointmentManager.CancelAppointment(appointmentId, reason);
+        public List<AppointmentDto> GetPendingAppointments() => appointmentManager.GetPendingAppointments();
 
-        public void NoShowAppointment(int appointmentId, string reason) => _appointmentManager.NoShowAppointment(appointmentId, reason);
+        public void CancelAppointment(int appointmentId, string reason) => appointmentManager.CancelAppointment(appointmentId, reason);
 
-        public void RegisterSession(int appointmentId, DateTime date, TimeSpan startTime, TimeSpan endTime) => _appointmentManager.RegisterSession(appointmentId, date, startTime, endTime);
+        public void NoShowAppointment(int appointmentId, string reason) => appointmentManager.NoShowAppointment(appointmentId, reason);
 
-        public void EvaluateAppointment(FinalEvaluationRequest request) => _appointmentManager.EvaluateAppointment(request);
+        public void RegisterSession(int appointmentId, DateTime date, TimeSpan startTime, TimeSpan endTime) => appointmentManager.RegisterSession(appointmentId, date, startTime, endTime);
 
-        public void FinishSession(int appointmentId) => _appointmentManager.FinishSession(appointmentId);
+        public void EvaluateAppointment(FinalEvaluationRequest request) => appointmentManager.EvaluateAppointment(request);
 
-        public List<TutorDto> GetAvailableTutors() => _userManager.GetAvailableTutors();
+        public void FinishSession(int appointmentId) => appointmentManager.FinishSession(appointmentId);
 
-        public void SubscribeForNotifications(string studentId) => _notificationManager.Subscribe(studentId, OperationContext.Current.GetCallbackChannel<INotificationCallback>());
+        public List<TutorDto> GetAvailableTutors() => userManager.GetAvailableTutors();
 
-        public void UnsubscribeFromNotifications(string studentId) => _notificationManager.Unsubscribe(studentId);
+        public void SubscribeForNotifications(string studentId) => notificationManager.Subscribe(studentId, OperationContext.Current.GetCallbackChannel<INotificationCallbacks>());
+
+        public void UnsubscribeFromNotifications(string studentId) => notificationManager.Unsubscribe(studentId);
+
+        public List<AppointmentDto> GetAttendedAppointment(DateTime from, DateTime to) => appointmentManager.GetAttendedAppointment(from, to);
+
+        public List<TutorDto> GetAllTutors() => userManager.GetAllTutors();
+
     }
 }

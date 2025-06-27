@@ -4,7 +4,7 @@ using System.ServiceModel;
 
 namespace ServiceContracts
 {
-    public interface INotificationCallback
+    public interface INotificationCallbacks
     {
         [OperationContract(IsOneWay = true)]
         void NotifyUpcomingAppointment(AppointmentDto appointment);

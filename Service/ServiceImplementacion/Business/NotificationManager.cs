@@ -11,8 +11,8 @@ namespace ServiceImplementacion.Business
     public class NotificationManager : IDisposable
     {
         private readonly AppointmentManager _appointmentMgr;
-        private readonly ConcurrentDictionary<string, INotificationCallback> _subs
-            = new ConcurrentDictionary<string, INotificationCallback>();
+        private readonly ConcurrentDictionary<string, INotificationCallbacks> _subs
+            = new ConcurrentDictionary<string, INotificationCallbacks>();
         private readonly Timer _timer;
 
         public NotificationManager(AppointmentManager appointmentMgr)
@@ -21,7 +21,7 @@ namespace ServiceImplementacion.Business
             _timer = new Timer(_ => CheckAndNotify(), null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
         }
 
-        public void Subscribe(string studentId, INotificationCallback callback)
+        public void Subscribe(string studentId, INotificationCallbacks callback)
         {
             _subs[studentId] = callback;
         }

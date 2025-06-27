@@ -129,9 +129,25 @@ namespace ServiceImplementacion.Business
             var appt = _ctx.Turnos.Find(appointmentId)
                        ?? throw new FaultException("Turno no existe.");
 
-            // Cambiamos el estado a “Atendido”
             appt.EstadoId = 2;
             _ctx.SaveChanges();
+        }
+
+        public List<AppointmentDto> GetAttendedAppointment(DateTime from, DateTime to)
+        {
+            return _ctx.Turnos
+                       .Where(t => t.EstadoId == 2                      // 2 = “Atendido
+                                && t.FechaCreacion >= from
+                                && t.FechaCreacion <= to)
+                       .Select(t => new AppointmentDto
+                       {
+                           AppointmentId = t.TurnoId,
+                           StudentId = t.Matricula,
+                           TutorId = t.NumeroPersonal,
+                           SessionDate = t.FechaCreacion,
+                           Status = t.TurnoEstados.EstadoName
+                       })
+                       .ToList();
         }
     }
 }

@@ -10,6 +10,8 @@ namespace ServiceContracts.DTOs
         [DataMember] public string PaternalSurname { get; set; }
         [DataMember] public string MaternalSurname { get; set; }
         [DataMember] public string Email { get; set; }
-        [DataMember] public string MajorId { get; set; }
+        [DataMember] public int CareerId { get; set; }
+        [DataMember] public string TutorId { get; set; }
+
     }
 }

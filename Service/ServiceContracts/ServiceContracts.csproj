@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\AuthenticatedUserDto.cs" />
+    <Compile Include="DTOs\CareerDto.cs" />
     <Compile Include="DTOs\CreateAppointmentRequest.cs" />
     <Compile Include="DTOs\FinalEvaluationRequest.cs" />
     <Compile Include="DTOs\LoginRequest.cs" />

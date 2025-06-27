@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ServiceContracts.DTOs.ServiceContracts.DTOs" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServiceContracts.DTOs.ServiceContracts.DTOs" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8085/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfAppointmentDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AppointmentDto" nillable="true" type="tns:AppointmentDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAppointmentDto" nillable="true" type="tns:ArrayOfAppointmentDto" />
+  <xs:complexType name="AppointmentDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AppointmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="SessionDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SessionEnd" type="ser:duration" />
+      <xs:element minOccurs="0" name="SessionName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SessionStart" type="ser:duration" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StudentId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StudentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TutorId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AppointmentDto" nillable="true" type="tns:AppointmentDto" />
+</xs:schema>

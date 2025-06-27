@@ -54,6 +54,11 @@
   <ItemGroup>
     <Compile Include="Business\AppointmentManager.cs" />
     <Compile Include="Business\NotificationManager.cs" />
+    <Compile Include="Business\ServiceResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Business\UserManager.cs" />
     <Compile Include="TutoringFacadeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,6 +80,13 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Business\ServiceResources.en.resx" />
+    <EmbeddedResource Include="Business\ServiceResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

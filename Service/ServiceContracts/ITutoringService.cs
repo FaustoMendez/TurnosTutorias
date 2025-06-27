@@ -6,7 +6,7 @@ using ServiceContracts.DTOs.ServiceContracts.DTOs;
 
 namespace ServiceContracts
 {
-    [ServiceContract(CallbackContract = typeof(INotificationCallback))]
+    [ServiceContract(CallbackContract = typeof(INotificationCallbacks))]
     public interface ITutoringService
     {
         [OperationContract]
@@ -35,5 +35,8 @@ namespace ServiceContracts
 
         [OperationContract]
         void FinishSession(int appointmentId);
+
+        [OperationContract]
+        List<AppointmentDto> GetAttendedAppointment(DateTime from, DateTime to);
     }
 }

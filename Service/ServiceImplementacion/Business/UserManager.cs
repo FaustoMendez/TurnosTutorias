@@ -6,6 +6,8 @@ using System.Text;
 using ServiceContracts.DTOs;
 using Data;
 using System.Collections.Generic;
+using ServiceContracts;
+using System.Diagnostics;
 
 namespace ServiceImplementacion.Business
 {
@@ -14,20 +16,19 @@ namespace ServiceImplementacion.Business
         private readonly TurnosTutoriasEntities _context;
         public UserManager(TurnosTutoriasEntities context) => _context = context;
 
+        [DebuggerNonUserCode]
         public void RegisterStudent(RegisterStudentRequest request)
         {
             if (_context.Usuarios.Any(u => u.Matricula == request.StudentId))
-                throw new FaultException("Ya existe un estudiante con esa matrícula.");
-            if (_context.Usuarios.Any(u => u.Email == request.Email))
-                throw new FaultException("El correo ya está registrado.");
-            if (!_context.Carreras.Any(c => c.CarreraId == request.MajorId))
-                throw new FaultException("La carrera indicada no existe.");
-            if (!_context.Tutores.Any(t => t.NumeroPersonal == request.TutorId))
-                throw new FaultException("El tutor indicado no existe.");
+                throw new FaultException<DuplicateStudentFault>(
+                    new DuplicateStudentFault { Message = ServiceResources.DuplicateMatricula_Message },
+                    new FaultReason(ServiceResources.DuplicateMatricula_Reason));
 
             var assignedCount = _context.Usuarios.Count(u => u.TutorId == request.TutorId);
             if (assignedCount >= 15)
-                throw new FaultException("El tutor ya tiene 15 estudiantes asignados.");
+                throw new FaultException<CapacityFault>(
+                    new CapacityFault { Message = ServiceResources.TutorCapacityFault_Message },
+                    new FaultReason(ServiceResources.TutorCapacityFault_Reason));
 
             byte[] hash;
             using (var sha = SHA256.Create())
@@ -41,19 +42,20 @@ namespace ServiceImplementacion.Business
                 ApellidoMaterno = request.MaternalSurname,
                 Email = request.Email,
                 PasswordHash = hash,
-                CarreraId = request.MajorId,
+                CarreraId = request.CareerId,
                 TutorId = request.TutorId,
                 FechaRegistro = DateTime.Now
             });
             _context.SaveChanges();
         }
 
+        [DebuggerNonUserCode]
         public void RegisterTutor(RegisterTutorRequest request)
         {
             if (_context.Tutores.Any(t => t.NumeroPersonal == request.TutorId))
-                throw new FaultException("Ya existe un tutor con ese número de personal.");
-            if (_context.Tutores.Any(t => t.Email == request.Email))
-                throw new FaultException("El correo ya está registrado.");
+                throw new FaultException<DuplicateTutorFault>(
+                    new DuplicateTutorFault { Message = ServiceResources.DuplicateTutorFault_Message },
+                    new FaultReason(ServiceResources.DuplicateTutorFault_Reason));
 
             byte[] hash;
             using (var sha = SHA256.Create())
@@ -74,23 +76,21 @@ namespace ServiceImplementacion.Business
 
         public List<TutorDto> GetAvailableTutors()
         {
-            var tutors = _context.Tutores
-                .Select(t => new {
-                    t.NumeroPersonal,
-                    t.Nombre,
-                    t.ApellidoPaterno,
-                    t.ApellidoMaterno,
-                    Load = _context.Usuarios.Count(u => u.TutorId == t.NumeroPersonal)
+            return _context.Tutores
+                .Select(t => new
+                {
+                    Tutor = t,
+                    AssignedCount = _context.Usuarios.Count(u => u.TutorId == t.NumeroPersonal)
                 })
-                .Where(x => x.Load < 15)
-                .ToList();
-
-            return tutors
+                .Where(x => x.AssignedCount < 15)
                 .Select(x => new TutorDto
                 {
-                    TutorId = x.NumeroPersonal,
-                    FullName = $"{x.Nombre} {x.ApellidoPaterno} {x.ApellidoMaterno}",
-                    CurrentLoad = x.Load
+                    TutorId = x.Tutor.NumeroPersonal,
+                    FirstName = x.Tutor.Nombre,
+                    PaternalSurname = x.Tutor.ApellidoPaterno,
+                    MaternalSurname = x.Tutor.ApellidoMaterno,
+                    Phone = x.Tutor.Telefono,
+                    Email = x.Tutor.Email
                 })
                 .ToList();
         }
@@ -104,7 +104,8 @@ namespace ServiceImplementacion.Business
             PaternalSurname = u.ApellidoPaterno,
             MaternalSurname = u.ApellidoMaterno,
             Email = u.Email,
-            MajorId = u.TutorId     
+            CareerId = (int)u.CarreraId,
+            TutorId = u.TutorId
         })
         .ToList();
 
@@ -135,7 +136,7 @@ namespace ServiceImplementacion.Business
                 PaternalSurname = u.ApellidoPaterno,
                 MaternalSurname = u.ApellidoMaterno,
                 Email = u.Email,
-                MajorId = u.CarreraId ?? 0,
+                CareerId = u.CarreraId ?? 0,
                 Role = "Student"
             };
         }
@@ -152,10 +153,37 @@ namespace ServiceImplementacion.Business
                 FirstName = t.Nombre,
                 PaternalSurname = t.ApellidoPaterno,
                 MaternalSurname = t.ApellidoMaterno,
+                Phone = t.Telefono,
                 Email = t.Email,
-                MajorId = 0,              
+                CareerId = 0,              
                 Role = "Tutor"
             };
+        }
+
+        public List<TutorDto> GetAllTutors()
+        {
+            return _context.Tutores
+                .Select(t => new TutorDto
+                {
+                    TutorId = t.NumeroPersonal,
+                    FirstName = t.Nombre,
+                    PaternalSurname = t.ApellidoPaterno,
+                    MaternalSurname = t.ApellidoMaterno,
+                    Phone = t.Telefono,
+                    Email = t.Email
+                })
+                .ToList();
+        }
+
+        public List<CareerDto> GetAllCareers()
+        {
+            return _context.Carreras
+            .Select(c => new CareerDto
+            {
+               CareerId = c.CarreraId,    
+               CareerName = c.Nombre          
+            })
+            .ToList();
         }
     }
 }

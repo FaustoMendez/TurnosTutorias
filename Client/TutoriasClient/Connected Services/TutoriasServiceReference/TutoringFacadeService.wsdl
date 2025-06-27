@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="TutoringFacadeService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IUserService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_ITutoringService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8085/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8085/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ServiceContracts" />
+      <xsd:import schemaLocation="http://localhost:8085/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8085/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ServiceContracts.DTOs" />
+      <xsd:import schemaLocation="http://localhost:8085/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ServiceContracts.DTOs.ServiceContracts.DTOs" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IUserService_RegisterTutor_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterTutor" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_RegisterTutor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterTutorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_RegisterTutor_DuplicateTutorFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/ServiceContracts" name="detail" element="q1:DuplicateTutorFault" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_RegisterStudent_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterStudent" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_RegisterStudent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterStudentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_RegisterStudent_DuplicateStudentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/ServiceContracts" name="detail" element="q2:DuplicateStudentFault" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_RegisterStudent_CapacityFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/ServiceContracts" name="detail" element="q3:CapacityFault" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_LoginUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_LoginUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAvailableTutors_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableTutors" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAvailableTutors_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableTutorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAllTutors_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTutors" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAllTutors_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTutorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAllCareers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCareers" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAllCareers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCareersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_CreateAppointment_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAppointment" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_CreateAppointment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_GetPendingAppointments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingAppointments" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_GetPendingAppointments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingAppointmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_CancelAppointment_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelAppointment" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_CancelAppointment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_NoShowAppointment_InputMessage">
+    <wsdl:part name="parameters" element="tns:NoShowAppointment" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_NoShowAppointment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NoShowAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_RegisterSession_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterSession" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_RegisterSession_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_EvaluateAppointment_InputMessage">
+    <wsdl:part name="parameters" element="tns:EvaluateAppointment" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_EvaluateAppointment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EvaluateAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_SubscribeForNotifications_InputMessage">
+    <wsdl:part name="parameters" element="tns:SubscribeForNotifications" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_UnsubscribeFromNotifications_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnsubscribeFromNotifications" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_FinishSession_InputMessage">
+    <wsdl:part name="parameters" element="tns:FinishSession" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_FinishSession_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FinishSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_GetAttendedAppointment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAttendedAppointment" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_GetAttendedAppointment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAttendedAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITutoringService_NotifyUpcomingAppointment_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyUpcomingAppointment" />
+  </wsdl:message>
+  <wsdl:portType name="IUserService">
+    <wsdl:operation name="RegisterTutor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/RegisterTutor" message="tns:IUserService_RegisterTutor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/RegisterTutorResponse" message="tns:IUserService_RegisterTutor_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/RegisterTutorDuplicateTutorFaultFault" name="DuplicateTutorFaultFault" message="tns:IUserService_RegisterTutor_DuplicateTutorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterStudent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/RegisterStudent" message="tns:IUserService_RegisterStudent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/RegisterStudentResponse" message="tns:IUserService_RegisterStudent_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/RegisterStudentDuplicateStudentFaultFault" name="DuplicateStudentFaultFault" message="tns:IUserService_RegisterStudent_DuplicateStudentFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/RegisterStudentCapacityFaultFault" name="CapacityFaultFault" message="tns:IUserService_RegisterStudent_CapacityFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/LoginUser" message="tns:IUserService_LoginUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/LoginUserResponse" message="tns:IUserService_LoginUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableTutors">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetAvailableTutors" message="tns:IUserService_GetAvailableTutors_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetAvailableTutorsResponse" message="tns:IUserService_GetAvailableTutors_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetAllUsers" message="tns:IUserService_GetAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetAllUsersResponse" message="tns:IUserService_GetAllUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTutors">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetAllTutors" message="tns:IUserService_GetAllTutors_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetAllTutorsResponse" message="tns:IUserService_GetAllTutors_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCareers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetAllCareers" message="tns:IUserService_GetAllCareers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetAllCareersResponse" message="tns:IUserService_GetAllCareers_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ITutoringService">
+    <wsdl:operation name="CreateAppointment">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITutoringService/CreateAppointment" message="tns:ITutoringService_CreateAppointment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITutoringService/CreateAppointmentResponse" message="tns:ITutoringService_CreateAppointment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingAppointments">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITutoringService/GetPendingAppointments" message="tns:ITutoringService_GetPendingAppointments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITutoringService/GetPendingAppointmentsResponse" message="tns:ITutoringService_GetPendingAppointments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelAppointment">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITutoringService/CancelAppointment" message="tns:ITutoringService_CancelAppointment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITutoringService/CancelAppointmentResponse" message="tns:ITutoringService_CancelAppointment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NoShowAppointment">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITutoringService/NoShowAppointment" message="tns:ITutoringService_NoShowAppointment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITutoringService/NoShowAppointmentResponse" message="tns:ITutoringService_NoShowAppointment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterSession">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITutoringService/RegisterSession" message="tns:ITutoringService_RegisterSession_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITutoringService/RegisterSessionResponse" message="tns:ITutoringService_RegisterSession_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EvaluateAppointment">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITutoringService/EvaluateAppointment" message="tns:ITutoringService_EvaluateAppointment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITutoringService/EvaluateAppointmentResponse" message="tns:ITutoringService_EvaluateAppointment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SubscribeForNotifications">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITutoringService/SubscribeForNotifications" message="tns:ITutoringService_SubscribeForNotifications_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnsubscribeFromNotifications">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITutoringService/UnsubscribeFromNotifications" message="tns:ITutoringService_UnsubscribeFromNotifications_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FinishSession">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITutoringService/FinishSession" message="tns:ITutoringService_FinishSession_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITutoringService/FinishSessionResponse" message="tns:ITutoringService_FinishSession_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendedAppointment">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITutoringService/GetAttendedAppointment" message="tns:ITutoringService_GetAttendedAppointment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITutoringService/GetAttendedAppointmentResponse" message="tns:ITutoringService_GetAttendedAppointment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyUpcomingAppointment">
+      <wsdl:output wsaw:Action="http://tempuri.org/ITutoringService/NotifyUpcomingAppointment" message="tns:ITutoringService_NotifyUpcomingAppointment_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IUserService" type="tns:IUserService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IUserService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="RegisterTutor">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/RegisterTutor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DuplicateTutorFaultFault">
+        <soap12:fault use="literal" name="DuplicateTutorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterStudent">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/RegisterStudent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DuplicateStudentFaultFault">
+        <soap12:fault use="literal" name="DuplicateStudentFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CapacityFaultFault">
+        <soap12:fault use="literal" name="CapacityFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/LoginUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableTutors">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/GetAvailableTutors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/GetAllUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTutors">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/GetAllTutors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCareers">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/GetAllCareers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_ITutoringService" type="tns:ITutoringService">
+    <wsp:PolicyReference URI="#NetTcpBinding_ITutoringService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="CreateAppointment">
+      <soap12:operation soapAction="http://tempuri.org/ITutoringService/CreateAppointment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingAppointments">
+      <soap12:operation soapAction="http://tempuri.org/ITutoringService/GetPendingAppointments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelAppointment">
+      <soap12:operation soapAction="http://tempuri.org/ITutoringService/CancelAppointment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NoShowAppointment">
+      <soap12:operation soapAction="http://tempuri.org/ITutoringService/NoShowAppointment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterSession">
+      <soap12:operation soapAction="http://tempuri.org/ITutoringService/RegisterSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EvaluateAppointment">
+      <soap12:operation soapAction="http://tempuri.org/ITutoringService/EvaluateAppointment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubscribeForNotifications">
+      <soap12:operation soapAction="http://tempuri.org/ITutoringService/SubscribeForNotifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="UnsubscribeFromNotifications">
+      <soap12:operation soapAction="http://tempuri.org/ITutoringService/UnsubscribeFromNotifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="FinishSession">
+      <soap12:operation soapAction="http://tempuri.org/ITutoringService/FinishSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendedAppointment">
+      <soap12:operation soapAction="http://tempuri.org/ITutoringService/GetAttendedAppointment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyUpcomingAppointment">
+      <soap12:operation soapAction="http://tempuri.org/ITutoringService/NotifyUpcomingAppointment" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TutoringFacadeService">
+    <wsdl:port name="NetTcpBinding_IUserService" binding="tns:NetTcpBinding_IUserService">
+      <soap12:address location="net.tcp://localhost:8095/UserService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8095/UserService</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_ITutoringService" binding="tns:NetTcpBinding_ITutoringService">
+      <soap12:address location="net.tcp://localhost:8095/ShiftService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8095/ShiftService</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

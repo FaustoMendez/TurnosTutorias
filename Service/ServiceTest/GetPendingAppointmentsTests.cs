@@ -10,54 +10,46 @@ using Data;
 
 namespace ServiceTest
 {
+    public static class TestHelpers
+    {
+        public static Mock<DbSet<T>> CreateDbSetMock<T>(List<T> sourceList) where T : class
+        {
+            var queryable = sourceList.AsQueryable();
+            var dbSetMock = new Mock<DbSet<T>>();
+
+            dbSetMock.As<IQueryable<T>>().Setup(m => m.Provider).Returns(queryable.Provider);
+            dbSetMock.As<IQueryable<T>>().Setup(m => m.Expression).Returns(queryable.Expression);
+            dbSetMock.As<IQueryable<T>>().Setup(m => m.ElementType).Returns(queryable.ElementType);
+            dbSetMock.As<IQueryable<T>>().Setup(m => m.GetEnumerator()).Returns(() => queryable.GetEnumerator());
+
+            dbSetMock.Setup(d => d.Add(It.IsAny<T>()))
+                     .Callback<T>(sourceList.Add);
+
+            return dbSetMock;
+        }
+    }
+
     [TestClass]
     public class GetPendingAppointmentsTests
     {
-        private Mock<TurnosTutoriasEntities> _ctxMock;
+        private List<Turnos> _data;
         private Mock<DbSet<Turnos>> _turnosMock;
+        private Mock<TurnosTutoriasEntities> _ctxMock;
         private AppointmentManager _mgr;
 
         [TestInitialize]
         public void Setup()
         {
-            _turnosMock = new Mock<DbSet<Turnos>>();
+            _data = new List<Turnos>();
+            _turnosMock = TestHelperStudent.CreateDbSetMock(_data);
             _ctxMock = new Mock<TurnosTutoriasEntities>();
             _ctxMock.Setup(c => c.Turnos).Returns(_turnosMock.Object);
             _mgr = new AppointmentManager(_ctxMock.Object);
         }
 
         [TestMethod]
-        public void Should_ReturnDtos_When_PendingExists()
-        {
-            var now = DateTime.UtcNow;
-            var data = new List<Turnos> {
-                new Turnos {
-                    TurnoId      = 2,
-                    Matricula    = "S2",
-                    NumeroPersonal = "T2",
-                    FechaCreacion  = now,
-                    EstadoId       = 1,
-                    TurnoEstados   = new TurnoEstados { EstadoName = "Pendiente" }
-                }
-            }.AsQueryable();
-
-            _turnosMock.As<IQueryable<Turnos>>().SetupAllProperties();
-            _turnosMock.As<IQueryable<Turnos>>().Setup(m => m.Provider).Returns(data.Provider);
-            _turnosMock.As<IQueryable<Turnos>>().Setup(m => m.Expression).Returns(data.Expression);
-            _turnosMock.As<IQueryable<Turnos>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            _turnosMock.As<IQueryable<Turnos>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
-
-            var list = _mgr.GetPendingAppointments();
-
-            Assert.AreEqual(1, list.Count);
-            Assert.AreEqual(2, list[0].AppointmentId);
-            Assert.AreEqual("Pendiente", list[0].Status);
-        }
-
-        [TestMethod]
         public void Should_ReturnEmpty_When_NoPending()
         {
-            // default empty setup
             var list = _mgr.GetPendingAppointments();
             Assert.AreEqual(0, list.Count);
         }

@@ -1,0 +1,206 @@
+﻿<Window x:Class="TutoriasClient.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:TutoriasClient.Properties"
+        mc:Ignorable="d"
+        Title="Tutorías • Login"
+        Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="{StaticResource BackgroundBrush}">
+
+    <Window.Resources>
+
+        <Color x:Key="PrimaryColor">#263A29</Color>
+        <Color x:Key="PrimaryLightColor">#2D4A30</Color>
+
+        <SolidColorBrush x:Key="PrimaryBrush"      Color="{StaticResource PrimaryColor}" />
+        <SolidColorBrush x:Key="PrimaryLightBrush" Color="{StaticResource PrimaryLightColor}" />
+        <SolidColorBrush x:Key="ForegroundLightBrush" Color="#EEEEEE"/>
+        <SolidColorBrush x:Key="GlassBrush" Color="#66FFFFFF"/>
+
+        <LinearGradientBrush x:Key="BackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#486341" Offset="0"/>
+            <GradientStop Color="#324C2A" Offset="1"/>
+        </LinearGradientBrush>
+
+        <DropShadowEffect x:Key="CardShadow"
+                          BlurRadius="18" ShadowDepth="0" Opacity="0.35"/>
+
+        <Style x:Key="GlassTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="#33FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#55FFFFFF"/>
+            <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="GlassPasswordBox" TargetType="PasswordBox">
+            <Setter Property="Background" Value="#33FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#55FFFFFF"/>
+            <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="{StaticResource PrimaryLightBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border"
+                                        Property="Opacity"
+                                        Value="0.40" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Border Width="360" Height="286" Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="{StaticResource GlassBrush}"
+                CornerRadius="12"
+                Padding="32"
+                Effect="{StaticResource CardShadow}">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="18"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="18"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="18"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="18"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Border Width="72" Height="72"
+                        Background="{StaticResource PrimaryBrush}"
+                        CornerRadius="36"
+                        HorizontalAlignment="Center"
+                        Margin="0,-68,0,0">
+                    <Image Source="/Icons/user.png"
+                           Width="55" Height="55"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                </Border>
+
+                <DockPanel Grid.Row="2" LastChildFill="True">
+                    <Image Source="/Icons/mail.png"
+                           Width="18" Height="18"
+                           Margin="0,0,8,0"
+                           VerticalAlignment="Center"/>
+                    <TextBox x:Name="EmailTextBox"
+                             ToolTip="{x:Static p:Resources.Login_EmailPlaceholder}"
+                             Style="{StaticResource GlassTextBox}" />
+                </DockPanel>
+
+                <DockPanel Grid.Row="4" LastChildFill="True">
+                    <Image Source="/Icons/lock.png"
+                           Width="18" Height="18"
+                           Margin="0,0,8,0"
+                           VerticalAlignment="Center"/>
+                    <PasswordBox x:Name="PasswordBox"
+                                 ToolTip="{x:Static p:Resources.Login_PasswordPlaceholder}"
+                                 Style="{StaticResource GlassPasswordBox}" />
+                </DockPanel>
+
+                <Grid Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox Content="{x:Static p:Resources.Login_RememberMe}"
+                              Foreground="{StaticResource ForegroundLightBrush}"
+                              VerticalAlignment="Center"/>
+
+                    <TextBlock Grid.Column="2" VerticalAlignment="Center">
+                        <Hyperlink Foreground="{StaticResource ForegroundLightBrush}">
+                            <Run Text="{x:Static p:Resources.Login_ForgotPasswordLink}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
+
+                <Button Grid.Row="8"
+                        Content="{x:Static p:Resources.Login_Button}"
+                        Style="{StaticResource PrimaryButton}"
+                        Command="{Binding LoginCommand}" Margin="0,11,0,-1" />
+            </Grid>
+        </Border>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,387,0,23" Grid.Row="2">
+            <TextBlock Text="{x:Static p:Resources.IdiomaLabel}" 
+               VerticalAlignment="Center" Foreground="White"
+               Margin="0,0,10,0"/>
+            <ComboBox x:Name="LanguageSelector"
+              Width="100"
+              Background="#FF11212D" Height="20" RenderTransformOrigin="0.5,0.5">
+                <ComboBoxItem Tag="es-MX" Content="{x:Static p:Resources.SpanishLabel}" />
+                <ComboBoxItem Tag="en-US" Content="{x:Static p:Resources.EnglishLabel}" />
+            </ComboBox>
+        </StackPanel>
+    </Grid>
+</Window>

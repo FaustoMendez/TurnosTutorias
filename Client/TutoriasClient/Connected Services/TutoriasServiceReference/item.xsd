@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ServiceContracts.DTOs" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServiceContracts.DTOs" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8085/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="RegisterTutorRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaternalSurname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaternalSurname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TutorId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RegisterTutorRequest" nillable="true" type="tns:RegisterTutorRequest" />
+  <xs:complexType name="RegisterStudentRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CareerId" type="xs:int" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaternalSurname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaternalSurname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StudentId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TutorId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RegisterStudentRequest" nillable="true" type="tns:RegisterStudentRequest" />
+  <xs:complexType name="LoginRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StudentId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginRequest" nillable="true" type="tns:LoginRequest" />
+  <xs:complexType name="AuthenticatedUserDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CareerId" type="xs:int" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaternalSurname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaternalSurname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Role" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AuthenticatedUserDto" nillable="true" type="tns:AuthenticatedUserDto" />
+  <xs:complexType name="ArrayOfTutorDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TutorDto" nillable="true" type="tns:TutorDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTutorDto" nillable="true" type="tns:ArrayOfTutorDto" />
+  <xs:complexType name="TutorDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CurrentLoad" type="xs:int" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaternalSurname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaternalSurname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TutorId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TutorDto" nillable="true" type="tns:TutorDto" />
+  <xs:complexType name="ArrayOfUserDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDto" nillable="true" type="tns:UserDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserDto" nillable="true" type="tns:ArrayOfUserDto" />
+  <xs:complexType name="UserDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CareerId" type="xs:int" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaternalSurname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaternalSurname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TutorId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserDto" nillable="true" type="tns:UserDto" />
+  <xs:complexType name="ArrayOfCareerDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CareerDto" nillable="true" type="tns:CareerDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCareerDto" nillable="true" type="tns:ArrayOfCareerDto" />
+  <xs:complexType name="CareerDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CareerId" type="xs:int" />
+      <xs:element minOccurs="0" name="CareerName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CareerDto" nillable="true" type="tns:CareerDto" />
+  <xs:complexType name="CreateAppointmentRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SessionId" type="xs:int" />
+      <xs:element minOccurs="0" name="StudentId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TutorId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreateAppointmentRequest" nillable="true" type="tns:CreateAppointmentRequest" />
+  <xs:complexType name="FinalEvaluationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttendanceStatus" type="ser:char" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rating" type="xs:int" />
+      <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SessionId" type="xs:int" />
+      <xs:element minOccurs="0" name="StudentId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TutorId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FinalEvaluationRequest" nillable="true" type="tns:FinalEvaluationRequest" />
+</xs:schema>
